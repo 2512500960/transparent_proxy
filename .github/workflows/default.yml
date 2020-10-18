@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/create-release@v1
+        
+      - name: Run a multi-line script
+        run: |
+         sh generate_oneinallscript.sh
+      - name: create release
+        id: create release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - updated cordinating with China ips from apnic.net
+          draft: false
+          prerelease: false
