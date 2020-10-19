@@ -1,4 +1,4 @@
-server_ip=13.66.165.220
+server_ip=1.2.3.4
 local_port=12345
 # 新建一个名为chnip的ipset
 ipset -N chnip hash:ip
