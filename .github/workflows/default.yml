@@ -14,14 +14,15 @@ jobs:
         run: |
          sh generate_oneinallscript.sh
          zip script.zip enable_transparent_proxy.sh disable_transparent_proxy.sh
+         echo "::set-env name=DATE::$(date "+%Y.%m.%d")"
       - name: create release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.commit }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ env.DATE }}
+          release_name: Release  ${{ env.DATE }}
           body: |
             Changes in this Release
             - updated cordinating with China ips from apnic.net
