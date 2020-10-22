@@ -1,7 +1,7 @@
 server_ip=1.2.3.4
 local_port=12345
 # 新建一个名为chnip的ipset
-ipset -N chnip hash:ip
+ipset -N chnip hash:net
 
 # 新建 nat/PROXY-TCP 链，用于透明代理本机/内网 tcp 流量
 iptables -t nat -N PROXY-TCP
