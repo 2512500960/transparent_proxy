@@ -13,6 +13,8 @@ jobs:
       - uses: actions/checkout@v2
         
       - name: do generate
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: |
          sh generate_oneinallscript.sh
          zip script.zip enable_transparent_proxy.sh disable_transparent_proxy.sh
